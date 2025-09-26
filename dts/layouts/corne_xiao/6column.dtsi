@@ -2,6 +2,31 @@
 #include <physical_layouts.dtsi>
 
 / {
+    chosen {
+        zephyr,display = &ssd1306fb;
+    };
+};
+
+&i2c1 {
+    status = "okay";
+    ssd1306fb: ssd1306fb@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <64>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <63>;
+        segment-remap;
+        com-invdir;
+        prechargep = <0x22>;
+        status = "okay";
+    };
+};
+
+
+/ {
     corne_xiao_6col_layout: corne_xiao_6col_layout {
         compatible = "zmk,physical-layout";
         display-name = "6 Column";
